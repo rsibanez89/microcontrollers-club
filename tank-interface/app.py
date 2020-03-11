@@ -1,9 +1,15 @@
 from flask import Flask, render_template, request, url_for, jsonify, Response
 import serial
 import sys
+import socket
+
+# Getting IP Address
+hostname = socket.gethostname()    
+ip = "ip:" + socket.gethostbyname(hostname)
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 ser.baudrate=9600
+ser.write(ip.encode())
 
 app = Flask(__name__)
 
