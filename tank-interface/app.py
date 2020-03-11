@@ -10,7 +10,7 @@ ip = "ip:" + socket.gethostbyname(hostname + ".local")
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 ser.baudrate=9600
-time.sleep(5) # Wait until Arduino is Connected.
+time.sleep(15) # Wait until Arduino is Connected.
 ser.write(ip.encode())
 
 app = Flask(__name__)
