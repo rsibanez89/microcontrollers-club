@@ -5,7 +5,7 @@ import socket
 
 # Getting IP Address
 hostname = socket.gethostname()    
-ip = "ip:" + socket.gethostbyname(hostname)
+ip = "ip:" + socket.gethostbyname(hostname + ".local")
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 ser.baudrate=9600
