@@ -1,12 +1,7 @@
-# first time
-# git clone https://github.com/rsibanez89/microcontrollers-club.git
+# Remove directory if exists
+rm -r -f /home/pi/microcontrollers-club
 
-while :; do
-   ping -c 1 -w 3 8.8.8.8; echo $? > /tmp/ping.status
-   sleep 1
-done
+# Clone repository
+git clone https://github.com/rsibanez89/microcontrollers-club.git /home/pi/microcontrollers-club
 
-cd /home/pi/microcontrollers-club
-git pull
-
-python tank-interface/app.py
+python /home/pi/microcontrollers-club/tank-interface/app.py
