@@ -3,6 +3,7 @@ import serial
 import sys
 import socket
 from camera_pi import Camera
+import time
 
 ser = serial.Serial("/dev/ttyACM0",9600)
 ser.baudrate=9600
@@ -17,10 +18,6 @@ def gen(camera):
 
 @app.route('/', methods=['GET'])
 def home():
-    # Getting IP Address
-    hostname = socket.gethostname()    
-    ip = "ip:" + socket.gethostbyname(hostname + ".local")
-    ser.write(ip.encode())
     return render_template('index.html')
 
 @app.route('/orders', methods=['POST'])
@@ -45,6 +42,13 @@ def video_feed():
 
 if __name__ == '__main__':
     try:
+        for x in range(10):
+            time.sleep(5)
+            # Getting IP Address
+            hostname = socket.gethostname()    
+            ip = "ip:" + socket.gethostbyname(hostname + ".local") + " "
+            ser.write(ip.encode())
+
         app.run(host='0.0.0.0',port=8080, threaded=True)
     finally:
         sys.exit()
