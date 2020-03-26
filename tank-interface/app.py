@@ -5,7 +5,7 @@ import socket
 from camera_pi import Camera
 import time
 
-ser = serial.Serial("/dev/ttyACM0",9600)
+ser = serial.Serial("/dev/serial0",9600)
 ser.baudrate=9600
 
 app = Flask(__name__)
