@@ -4,6 +4,7 @@ import sys
 import socket
 from camera_pi import Camera
 import time
+import os
 
 ser = serial.Serial("/dev/serial0",9600)
 ser.baudrate=9600
@@ -46,8 +47,9 @@ if __name__ == '__main__':
             time.sleep(5)
             # Getting IP Address
             hostname = socket.gethostname()    
-            ip = "ip:" + socket.gethostbyname(hostname + ".local") + " "
-            ser.write(ip.encode())
+            ip = socket.gethostbyname(hostname + ".local")
+            ser.write(str("ip:" + ip + " ").encode())
+            os.system('espeak-ng "i p address ' + ip + '" -p 10 -s 150')
 
         app.run(host='0.0.0.0',port=8080, threaded=True)
     finally:
